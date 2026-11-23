@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CODE_RE, MAX_BYTES, handleShare, newCode, type Redis } from './_share-core';
+import { CODE_RE, MAX_BYTES, handleShare, newCode, type Redis } from './_share-core.js';
 
 function memory(): Redis & { ttl: Record<string, number> } {
   const m = new Map<string, string>();

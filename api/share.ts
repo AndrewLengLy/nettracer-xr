@@ -1,6 +1,6 @@
 // POST /api/share   stores a scan for 15 minutes and returns a 6-character code.
 // GET  /api/share?code=ABC234   returns the scan while the code is alive.
-import { handleShare, redisFromEnv } from './_share-core';
+import { handleShare, redisFromEnv } from './_share-core.js';
 
 async function handle(request: Request): Promise<Response> {
   try {
