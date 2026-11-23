@@ -1,0 +1,26 @@
+<!-- Device details: config in Lab mode, What is this? in My Network. -->
+<style>
+  .root { flex-direction: column; padding-top: 18px; padding-bottom: 18px; padding-left: 20px; padding-right: 20px; gap: 10px; }
+  .title { font-size: 22px; font-weight: 700; color: #1c1d20; }
+  .title:dark { color: #fafaf7; }
+  .body { font-size: 16px; line-height: 1.35; color: #303136; }
+  .body:dark { color: #e4e4e7; }
+  .muted { font-size: 15px; line-height: 1.35; color: #55565c; }
+  .muted:dark { color: #a1a1aa; }
+  .row { flex-direction: row; gap: 8px; flex-wrap: wrap; }
+  .col { flex-direction: column; gap: 8px; }
+</style>
+<Panel class="root" style="width: 300px">
+  <span id="dev-name" class="title">Device</span>
+  <span id="dev-kind" class="muted">-</span>
+  <span id="dev-r1" class="body">-</span>
+  <span id="dev-r2" class="body">-</span>
+  <span id="dev-r3" class="body">-</span>
+  <span id="dev-r4" class="body">-</span>
+  <span id="dev-r5" class="body">-</span>
+  <div class="row">
+    <Button id="btn-dev-ping" variant="primary"><ButtonLabel>Ping this</ButtonLabel></Button>
+    <Button id="btn-dev-link" variant="secondary"><ButtonLabel id="lbl-dev-link">Use Wi-Fi</ButtonLabel></Button>
+    <Button id="btn-dev-close" variant="secondary"><ButtonLabel>Close</ButtonLabel></Button>
+  </div>
+</Panel>

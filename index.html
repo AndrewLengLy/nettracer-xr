@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>NetTracer XR</title>
+    <meta name="description" content="Watch packets cross a network hop by hop in mixed reality. Lab mode puts a sample network on a table. My Network pins your real router, PC and phone to where they sit in your room." />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta property="og:title" content="NetTracer XR" />
+    <meta property="og:description" content="Packets flying between the real devices in your room, with every hop explained." />
+    <meta property="og:image" content="https://nettracer-xr.andrewlengly.com/og.png" />
+    <meta property="og:url" content="https://nettracer-xr.andrewlengly.com/" />
+    <style>
+      html, body { margin: 0; background: #16171a; }
+      #boot { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; color: #a1a1aa; font: 500 16px/1.4 system-ui, sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="boot">Loading NetTracer XR</div>
+    <noscript>NetTracer XR needs JavaScript and WebGL.</noscript>
+    <div id="scene-container"></div>
+    <script type="module" src="/src/index.ts"></script>
+  </body>
+</html>

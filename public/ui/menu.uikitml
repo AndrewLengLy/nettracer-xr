@@ -1,0 +1,26 @@
+<!-- Main menu. Every size is UIKit units: the panel is placed at scale 0.25, so 16 units read as 4 cm. -->
+<style>
+  .root { flex-direction: column; padding-top: 18px; padding-bottom: 18px; padding-left: 20px; padding-right: 20px; gap: 10px; }
+  .title { font-size: 22px; font-weight: 700; color: #1c1d20; }
+  .title:dark { color: #fafaf7; }
+  .body { font-size: 16px; line-height: 1.35; color: #303136; }
+  .body:dark { color: #e4e4e7; }
+  .muted { font-size: 15px; line-height: 1.35; color: #55565c; }
+  .muted:dark { color: #a1a1aa; }
+  .row { flex-direction: row; gap: 8px; flex-wrap: wrap; }
+  .col { flex-direction: column; gap: 8px; }
+</style>
+<Panel class="root" style="width: 300px">
+  <span class="title">NetTracer XR</span>
+  <span id="menu-sub" class="muted">Pick a mode. Point and pull the trigger to press a button.</span>
+  <div class="col">
+    <Button id="btn-lab" variant="primary"><ButtonLabel>Lab mode</ButtonLabel></Button>
+    <Button id="btn-home" variant="secondary"><ButtonLabel>My Network</ButtonLabel></Button>
+    <Button id="btn-scale" variant="secondary"><ButtonLabel id="lbl-scale">Room scale</ButtonLabel></Button>
+  </div>
+  <div class="row">
+    <Button id="btn-narration" variant="secondary"><ButtonLabel id="lbl-narration">Narration on</ButtonLabel></Button>
+    <Button id="btn-rate" variant="secondary"><ButtonLabel id="lbl-rate">Voice 1x</ButtonLabel></Button>
+  </div>
+  <Button id="btn-xr" variant="primary"><ButtonLabel id="lbl-xr">Enter headset view</ButtonLabel></Button>
+</Panel>

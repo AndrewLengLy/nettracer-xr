@@ -1,0 +1,24 @@
+<!-- Hop explanation shown for each simulation event. Captions are always on. -->
+<style>
+  .root { flex-direction: column; padding-top: 18px; padding-bottom: 18px; padding-left: 20px; padding-right: 20px; gap: 10px; }
+  .title { font-size: 22px; font-weight: 700; color: #1c1d20; }
+  .title:dark { color: #fafaf7; }
+  .body { font-size: 16px; line-height: 1.35; color: #303136; }
+  .body:dark { color: #e4e4e7; }
+  .muted { font-size: 15px; line-height: 1.35; color: #55565c; }
+  .muted:dark { color: #a1a1aa; }
+  .row { flex-direction: row; gap: 8px; flex-wrap: wrap; }
+  .col { flex-direction: column; gap: 8px; }
+</style>
+<Panel class="root" style="width: 420px">
+  <span id="hop-step" class="muted">Step 0 of 0</span>
+  <span id="hop-title" class="title">Ready</span>
+  <span id="hop-text" class="body">Pick a source and a destination, then send a ping.</span>
+  <span id="hop-why" class="muted">-</span>
+  <div class="row">
+    <Button id="btn-prev" variant="secondary"><ButtonLabel>Back</ButtonLabel></Button>
+    <Button id="btn-play" variant="primary"><ButtonLabel id="lbl-play">Pause</ButtonLabel></Button>
+    <Button id="btn-next" variant="secondary"><ButtonLabel>Next</ButtonLabel></Button>
+    <Button id="btn-replay" variant="secondary"><ButtonLabel>Replay</ButtonLabel></Button>
+  </div>
+</Panel>

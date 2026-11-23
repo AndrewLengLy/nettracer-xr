@@ -1,0 +1,342 @@
+{
+  "vlans": false,
+  "hsrp": false,
+  "tls": false,
+  "devices": {
+    "lan": {
+      "id": "lan",
+      "type": "switch",
+      "name": "Home LAN",
+      "label": "Router switch and Wi-Fi",
+      "power": true,
+      "macStatic": {}
+    },
+    "router": {
+      "id": "router",
+      "type": "router",
+      "name": "Router",
+      "label": "TP-Link router",
+      "power": true,
+      "priority": 100,
+      "arpStatic": {},
+      "ifaces": [
+        {
+          "name": "LAN",
+          "mac": "a4:2b:b0:3c:00:01",
+          "peer": "lan",
+          "vlan": 1,
+          "addrs": [
+            {
+              "ip": "192.168.1.1",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "hsrp": []
+        },
+        {
+          "name": "WAN",
+          "mac": "02:00:00:00:00:02",
+          "peer": "internet",
+          "vlan": 1,
+          "addrs": [
+            {
+              "ip": "100.64.0.2",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "hsrp": []
+        }
+      ],
+      "routes": [
+        {
+          "net": "192.168.1.0",
+          "mask": "255.255.255.0",
+          "iface": "LAN",
+          "via": "",
+          "type": "C"
+        },
+        {
+          "net": "100.64.0.0",
+          "mask": "255.255.255.0",
+          "iface": "WAN",
+          "via": "",
+          "type": "C"
+        },
+        {
+          "net": "0.0.0.0",
+          "mask": "0.0.0.0",
+          "iface": "WAN",
+          "via": "100.64.0.1",
+          "type": "S"
+        }
+      ],
+      "nat": {
+        "inside": "LAN",
+        "outside": "WAN",
+        "publicIp": "100.64.0.2"
+      },
+      "meta": {
+        "kind": "router",
+        "vendor": "TP-Link",
+        "macDisplay": "a4:2b:b0:3c:xx:xx",
+        "randomMac": false,
+        "latencyMs": 3,
+        "link": "wired"
+      }
+    },
+    "pc": {
+      "id": "pc",
+      "type": "laptop",
+      "role": "client",
+      "name": "This PC",
+      "label": "Scanning PC",
+      "ip": "192.168.1.42",
+      "mask": "255.255.255.0",
+      "gw": "192.168.1.1",
+      "dns": "8.8.8.8",
+      "mac": "3c:22:fb:1a:00:02",
+      "uplink": "lan",
+      "vlan": 1,
+      "power": true,
+      "arpStatic": {},
+      "meta": {
+        "kind": "pc",
+        "scanner": true,
+        "vendor": "Apple",
+        "macDisplay": "3c:22:fb:1a:xx:xx",
+        "randomMac": false,
+        "latencyMs": 0,
+        "link": "wifi",
+        "hostname": "laptop"
+      }
+    },
+    "h12": {
+      "id": "h12",
+      "type": "laptop",
+      "role": "client",
+      "name": "office-desktop",
+      "label": "Intel pc",
+      "ip": "192.168.1.12",
+      "mask": "255.255.255.0",
+      "gw": "192.168.1.1",
+      "dns": "8.8.8.8",
+      "mac": "00:1b:21:7a:00:03",
+      "uplink": "lan",
+      "vlan": 1,
+      "power": true,
+      "arpStatic": {},
+      "meta": {
+        "kind": "pc",
+        "vendor": "Intel",
+        "macDisplay": "00:1b:21:7a:xx:xx",
+        "randomMac": false,
+        "latencyMs": 2,
+        "hostname": "office-desktop",
+        "link": "wired"
+      }
+    },
+    "h23": {
+      "id": "h23",
+      "type": "laptop",
+      "role": "client",
+      "name": "Pixel-8",
+      "label": "Phone",
+      "ip": "192.168.1.23",
+      "mask": "255.255.255.0",
+      "gw": "192.168.1.1",
+      "dns": "8.8.8.8",
+      "mac": "da:a1:19:5e:00:04",
+      "uplink": "lan",
+      "vlan": 1,
+      "power": true,
+      "arpStatic": {},
+      "meta": {
+        "kind": "phone",
+        "macDisplay": "da:a1:19:5e:xx:xx",
+        "randomMac": true,
+        "latencyMs": 41,
+        "hostname": "Pixel-8",
+        "link": "wifi"
+      }
+    },
+    "h31": {
+      "id": "h31",
+      "type": "laptop",
+      "role": "client",
+      "name": "Living-Room-Roku",
+      "label": "Roku tv",
+      "ip": "192.168.1.31",
+      "mask": "255.255.255.0",
+      "gw": "192.168.1.1",
+      "dns": "8.8.8.8",
+      "mac": "b0:a7:37:11:00:05",
+      "uplink": "lan",
+      "vlan": 1,
+      "power": true,
+      "arpStatic": {},
+      "meta": {
+        "kind": "tv",
+        "vendor": "Roku",
+        "macDisplay": "b0:a7:37:11:xx:xx",
+        "randomMac": false,
+        "latencyMs": 9,
+        "hostname": "Living-Room-Roku",
+        "link": "wired"
+      }
+    },
+    "h40": {
+      "id": "h40",
+      "type": "laptop",
+      "role": "client",
+      "name": "BRW-Printer",
+      "label": "Brother printer",
+      "ip": "192.168.1.40",
+      "mask": "255.255.255.0",
+      "gw": "192.168.1.1",
+      "dns": "8.8.8.8",
+      "mac": "00:80:77:42:00:06",
+      "uplink": "lan",
+      "vlan": 1,
+      "power": true,
+      "arpStatic": {},
+      "meta": {
+        "kind": "printer",
+        "vendor": "Brother",
+        "macDisplay": "00:80:77:42:xx:xx",
+        "randomMac": false,
+        "latencyMs": 6,
+        "hostname": "BRW-Printer",
+        "link": "wired"
+      }
+    },
+    "h52": {
+      "id": "h52",
+      "type": "laptop",
+      "role": "client",
+      "name": "Speaker .52",
+      "label": "Sonos speaker",
+      "ip": "192.168.1.52",
+      "mask": "255.255.255.0",
+      "gw": "192.168.1.1",
+      "dns": "8.8.8.8",
+      "mac": "48:a6:b8:12:00:07",
+      "uplink": "lan",
+      "vlan": 1,
+      "power": true,
+      "arpStatic": {},
+      "meta": {
+        "kind": "speaker",
+        "vendor": "Sonos",
+        "macDisplay": "48:a6:b8:12:xx:xx",
+        "randomMac": false,
+        "latencyMs": 12,
+        "link": "wifi"
+      }
+    },
+    "h61": {
+      "id": "h61",
+      "type": "laptop",
+      "role": "client",
+      "name": "Smart device .61",
+      "label": "Tuya smart device",
+      "ip": "192.168.1.61",
+      "mask": "255.255.255.0",
+      "gw": "192.168.1.1",
+      "dns": "8.8.8.8",
+      "mac": "b8:06:0d:e6:00:08",
+      "uplink": "lan",
+      "vlan": 1,
+      "power": true,
+      "arpStatic": {},
+      "meta": {
+        "kind": "iot",
+        "vendor": "Tuya",
+        "macDisplay": "b8:06:0d:e6:xx:xx",
+        "randomMac": false,
+        "latencyMs": 88,
+        "link": "wifi"
+      }
+    },
+    "internet": {
+      "id": "internet",
+      "type": "router",
+      "name": "Internet",
+      "label": "Your ISP and beyond",
+      "power": true,
+      "priority": 100,
+      "arpStatic": {},
+      "ifaces": [
+        {
+          "name": "ISP",
+          "mac": "02:00:00:08:08:08",
+          "peer": "router",
+          "vlan": 1,
+          "addrs": [
+            {
+              "ip": "100.64.0.1",
+              "mask": "255.255.255.0"
+            },
+            {
+              "ip": "8.8.8.8",
+              "mask": "255.255.255.255"
+            }
+          ],
+          "hsrp": []
+        }
+      ],
+      "routes": [
+        {
+          "net": "100.64.0.0",
+          "mask": "255.255.255.0",
+          "iface": "ISP",
+          "via": "",
+          "type": "C"
+        }
+      ],
+      "meta": {
+        "kind": "internet",
+        "latencyMs": 18,
+        "link": "wired"
+      }
+    }
+  },
+  "internet": {
+    "target": "8.8.8.8",
+    "latencyMs": 18,
+    "gatewayLatencyMs": 3,
+    "hops": [
+      {
+        "n": 2,
+        "ip": "100.64.12.1",
+        "rttMs": 9
+      },
+      {
+        "n": 3,
+        "ip": "198.51.100.17",
+        "rttMs": 12
+      },
+      {
+        "n": 4,
+        "ip": null,
+        "rttMs": null
+      },
+      {
+        "n": 5,
+        "ip": "203.0.113.90",
+        "rttMs": 16
+      },
+      {
+        "n": 6,
+        "ip": "8.8.8.8",
+        "rttMs": 18
+      }
+    ]
+  },
+  "scan": {
+    "version": 1,
+    "scannedAt": "2026-11-01T18:00:00.000Z",
+    "subnet": "192.168.1.0/24",
+    "macsMasked": true,
+    "tool": "nettracer-scan"
+  }
+}
