@@ -158,6 +158,8 @@ export class App {
     if (startMode === 'lab') this.openLab();
     else if (startMode === 'demo') demoScan().then((t) => this.openHome(t)).catch(() => undefined);
 
+    window.addEventListener('resize', () => this.placeDesktopCamera());
+
     // Desktop keys: Space plays or pauses, the arrow keys step one hop.
     window.addEventListener('keydown', (e) => {
       if (this.isImmersive() || (this.mode.peek() !== 'lab' && this.mode.peek() !== 'home')) return;
@@ -990,19 +992,24 @@ export class App {
     // A narrower lens than the headset keeps flat panels from looking keystoned on a monitor.
     cam.fov = 50;
     cam.updateProjectionMatrix();
+    const target = v2.set(0, 1.3, -1.1);
     if (mode === 'lab' && this.labScale === 'table') {
       cam.position.set(0, 1.65, 1.25);
-      cam.lookAt(0, 1.0, -1.0);
+      target.set(0, 1.0, -1.0);
     } else if (mode === 'lab') {
       cam.position.set(0, 3.6, 2.6);
-      cam.lookAt(0, 0.8, -3.4);
+      target.set(0, 0.8, -3.4);
     } else if (mode === 'home') {
       cam.position.set(0, 2.5, 2.9);
-      cam.lookAt(0, 1.05, -1.6);
+      target.set(0, 1.05, -1.6);
     } else {
       cam.position.set(0, 1.55, 0.9);
-      cam.lookAt(0, 1.3, -1.1);
     }
+    // The layouts are framed for a 16:10 window. Narrower windows (4:3, phones in portrait) pull the camera back.
+    const aspect = this.world.renderer.domElement.clientWidth / Math.max(1, this.world.renderer.domElement.clientHeight);
+    const back = Math.min(2.6, Math.max(1, 1.6 / aspect));
+    cam.position.sub(target).multiplyScalar(back).add(target);
+    cam.lookAt(target);
   }
 
   update(delta: number, time: number) {
