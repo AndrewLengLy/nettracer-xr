@@ -153,6 +153,22 @@ export class App {
       this.panels.keypad.text('kp-status', `The link did not load: ${(e as Error).message}`);
     }
 
+    // Deep links for desktop visitors and screenshots: ?mode=lab or ?mode=demo.
+    const startMode = new URLSearchParams(location.search).get('mode');
+    if (startMode === 'lab') this.openLab();
+    else if (startMode === 'demo') demoScan().then((t) => this.openHome(t)).catch(() => undefined);
+
+    // Desktop keys: Space plays or pauses, the arrow keys step one hop.
+    window.addEventListener('keydown', (e) => {
+      if (this.isImmersive() || (this.mode.peek() !== 'lab' && this.mode.peek() !== 'home')) return;
+      if (e.key === ' ') {
+        e.preventDefault();
+        if (!this.playback.sim) this.sendPing();
+        else this.playback.togglePause();
+      } else if (e.key === 'ArrowRight') this.playback.next();
+      else if (e.key === 'ArrowLeft') this.playback.prev();
+    });
+
     // Installed as an app (the Quest Store build is a Trusted Web Activity): there is no 2D page,
     // so spend the launch tap on entering the headset view right away.
     // getDigitalGoodsService exists only inside the installed app on the headset.
